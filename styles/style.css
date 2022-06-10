@@ -1,0 +1,33 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background: linear-gradient(180.96deg, rgba(119, 141, 169, 0.45) 0.8%, #E0E1DD 102.03%);
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.cabecera {
+    width: 100%;
+    padding: 20px;
+}
+
+.cabecera__titulo {
+    font-size: 32px;
+    color: #0d1b2a;
+}
+
+.juego {
+    border: 1px solid black;
+}
+
+.juego__parques {
+    border: 1px solid red;
+    width: 540px;
+    height: 536px;
+}
+
