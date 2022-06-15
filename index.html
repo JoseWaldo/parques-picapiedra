@@ -11,8 +11,17 @@
     <title>Parqués Picapiedra</title>
 </head>
 <body>
+    <!-- AQUÍ IRA EL JUEGO ENTERO CON LOS BOTONES Y TODAS LAS ACCIONES QUE SE PUEDAN REALIZAR -->
     <main class="juego">
+        <!-- ESTA PARTE ES DONDE SE REALIZARA EL TABLERO -->
         <section class="juego__parques" >
+
+            <!-- CADA TABLA ES UN GRUPO DE CASILLAS DE 3 COLUMNAS Y 8 FILAS CON EL COLOR
+                DEFINIDO POR LA COLUMNA DE LA META
+                TR -> FILAS
+                TD -> COLUMNAS
+            -->
+
             <table class="casillas-eq-rojo">
                 <tr>
                     <td class="casilla"></td>
@@ -273,9 +282,13 @@
                 </tr>
             </table>
 
+            <!-- ESTA ES LA FIGURA QUE SE ENCUENTRA EN EL CENTRO DE LA FIGURA -->
+
             <div class="meta">
                 <p>META</p>
             </div>
+
+            <!-- LAS DIFERENTES CARCELES O SALIDAS COMO SON LLAMADAS -->
 
             <div class="salida-roja salida">
                 <div class="punto-inicial pi1">
@@ -327,12 +340,13 @@
                 <div class="punto-inicial pi4"></div>
             </div>
         </section>
+
+        <!-- EN ESTA SECCION IRAN TODAS LAS ACCIONES O CONFIGURACIONES QUE SE PUEDAN APLICAR -->
+
         <section class="config-parques">
-            <article>
-                <header class="cabecera">
-                    <h1 class="cabecera__titulo">Parqués Picapiedra</h1>
-                </header>
-            </article>
+            <header class="cabecera">
+                <h1 class="cabecera__titulo">Parqués Picapiedra</h1>
+            </header>
         </section>
     </main>
     <script src="./js/main.js"></script>
