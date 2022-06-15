@@ -26,7 +26,6 @@ body {
     display: flex;
     align-items: center;
     height: 100vh;
-    width: 90vw;
 }
 
 /* ES LA ENVULTURA QUE CONTIENE A TODOS LOS ELEMENTOS DEL TABLERO DEL PARQUÉS */
@@ -36,7 +35,7 @@ body {
     height: 572.67px;
     position: relative;
     z-index: 9;
-    margin: 0 20px;
+    margin-left: 10px;
 }
 
 /* CADA TABLA TIENE ESTOS ESTILOS PARA QUE DE ESTA MANERA SE PUEDA MOVER */
@@ -107,6 +106,10 @@ tr {
     cursor: pointer;
 }
 
+.casilla:hover{
+    box-shadow: 0px 0px 12px -1px rgba(0, 0, 0, 0.91);
+}
+
 /* EN ESTA PARTE SE ESPECIFICA EL COLOR DE CADA CASILLA */
 
 .casilla-roja {
@@ -133,6 +136,22 @@ tr {
     background-color: var(--verde);
 }
 
+.casilla--salida {
+    background-image: url('../scr/texto/SALIDA.svg');
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-position-x: center;
+    background-position-y: center;
+}
+
+.casilla--seguro {
+    background-image: url('../scr/texto/SEGURO.svg');
+    background-repeat: no-repeat;
+    background-size: 90%;
+    background-position-x: center;
+    background-position-y: center;
+}
+
 /* ESTA ES LA FIGURA CENTRAL DEL TABLERO, LA META */
 
 .meta {
@@ -144,15 +163,16 @@ tr {
     height: 245px;
     top: 50%;
     transform: translate(50%, -50%);
+    cursor: pointer;
 }
 
 .meta p {
-    position: absolute;
-    top: 50%;
-    transform: translate(110%, -50%);
+    font-size: 32px;
     font-weight: bold;
     color: white;
-    font-size: 32px;
+    position: absolute;
+    top: 50%;
+    transform: translate(45%, -50%);
 
 }
 
@@ -160,7 +180,7 @@ tr {
    O LUGAR DE DONDE SALEN NUESTRAS FICHAS
 */
 
-.salida {
+.carcel {
     position: absolute;
     width: 0;
     height: 0;
@@ -172,42 +192,42 @@ tr {
    Y DEMAS PROPIEDADES QUE LA DEJEN POSICIONARSE DONDE SE REQUIERE
 */
 
-.salida-roja {
+.carcel-roja {
     border-bottom: 115px solid var(--rojo);
     bottom: 49.5px;
     right: 127.5px;
     transform: rotate(-30deg);
 }
 
-.salida-verde {
+.carcel-verde {
     border-bottom: 115px solid var(--verde);
     bottom: 49.5px;
     left: 111px;
     transform: rotate(30deg);
 }
 
-.salida-azul {
+.carcel-azul {
     border-bottom: 115px solid var(--azul);
     top: 16.5px;
     left: 111px;
     transform: rotate(30deg);
 }
 
-.salida-purpura {
+.carcel-purpura {
     border-bottom: 115px solid var(--purpura);
     top: 16.5px;
     right: 127.5px;
     transform: rotate(-30deg);
 }
 
-.salida-rosa {
+.carcel-rosa {
     border-bottom: 115px solid var(--rosa);
     top: 228px;
     left: 10px;
     transform: rotate(90deg);
 }
 
-.salida-naranja {
+.carcel-naranja {
     border-bottom: 115px solid var(--naranja);
     top: 228px;
     right: 28px;
@@ -253,6 +273,29 @@ tr {
     top: 9px;
     left: -10px;
 }
+
+/* --------------------------------------------------------------- */
+/* CONFIG DEL JUEGO */
+
+.config-parques {
+    border: 1px solid black;
+    width: calc(100% - 600px);
+    height: 100vh;
+}
+
+.cabecera {
+    width: 60%;
+    text-align: center;
+    padding: 10px;
+    border-bottom: 3px solid black;
+    margin: 0 auto;
+}
+
+.cabecera__titulo {
+    font-size: 28px;
+    font-weight: bold;
+}
+
 
 /* TODAS LAS FICHAS TENDRÁN ESTAS PROPIEDADES */
 

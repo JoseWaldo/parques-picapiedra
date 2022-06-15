@@ -1,0 +1,15 @@
+ETAPAS: 
+1) Saber el # de jugadores y # de fichas.
+2) Preguntar el color de las fichas con las que los usuarios quieren jugar.
+3) Darle a comenzar --> posiciona las fichas en sus respectivos puestos.
+    3.1) 
+4) Se pregunta que color quiere empezar:
+    4.1) Se crea un vector circular con los colores de las fichas:
+         [rojo, naranja, purpura, azul, rosa, verde]
+    4.2) Se posiciona en el color elegido por el usuario para que pueda arrojar los dados.
+    4.4) Luego de esto en un array normal se colocan los puntajes de los jugadores en array.
+         [12, 10, 0, 8, 7, 0]
+    4.5) Se busca el número mayor del array para saber quien saco mayor puntaje (se obtiene el indice)
+    4.6) Se crea por último una cola con el orden en que se lanzaran de derecha a izq.
+        4.6.1) (0, rojo), [10 != 0](1, naranja), [8 != 0](2, azul), [7 != 0](3, rosa)
+5) empieza el juego.    

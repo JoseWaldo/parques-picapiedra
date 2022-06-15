@@ -3,6 +3,14 @@ const fichaRoja = document.createElement('div')
 const fichaAzul = document.createElement('div')
 const fichaVerde = document.createElement('div')
 
+
+document.addEventListener('click', iniciar(), false)
+
+function iniciar() {
+
+}
+
+
 // parques.addEventListener('click', (e) => {
 //     if(e.target.id === 'casilla-prueba') {
 //         const casillaPrueba = document.querySelector('#casilla-prueba')
@@ -22,4 +30,5 @@ parques.addEventListener('click', (e) => {
         fichaVerde.id = 'ficha-verde'
         casillaPrueba.insertAdjacentElement('afterbegin', fichaVerde)
     } 
+    console.log(e.target.id)
 }, false)
