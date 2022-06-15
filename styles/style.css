@@ -4,6 +4,8 @@
     box-sizing: border-box;
 }
 
+/* DECLARACIÓN DE VARIABLES PARA LOS COLORES */
+
 :root {
     --purpura: #A453CA;
     --naranja: #F5B95F;
@@ -16,40 +18,44 @@
 
 body {
     font-family: 'Outfit', sans-serif;
+}
+
+/* ESTA ES EL CONTENEDOR DEL JUEGO */
+
+.juego {
+    display: flex;
+    align-items: center;
     height: 100vh;
+    width: 90vw;
 }
 
-.cabecera {
-    width: 100%;
-    padding: 3px;
-    padding-left: 20px;
-}
-
-.cabecera__titulo {
-    font-size: 32px;
-    color: #0d1b2a;
-}
+/* ES LA ENVULTURA QUE CONTIENE A TODOS LOS ELEMENTOS DEL TABLERO DEL PARQUÉS */
 
 .juego__parques {
     width: 576px;
     height: 572.67px;
-    border: 1px solid black;
     position: relative;
     z-index: 9;
+    margin: 0 20px;
 }
+
+/* CADA TABLA TIENE ESTOS ESTILOS PARA QUE DE ESTA MANERA SE PUEDA MOVER */
 
 table {
     display: block;
     position: absolute; 
-    /* border: 1px solid green; */
     width: 140.24px;
     border-spacing: 0;
     z-index: 99;
 }
 
+/* TR HACE REFERENCIA A CADA FILA DE LAS TABLAS */
+
 tr {
     display: flex;
 }
+
+/* CADA TABLA NECESITA UNA UBICACION PARTICULAR SE DIVIDEN EN LOS COLORES SEGÚN LA COLUMNA DE LA META */
 
 .casillas-eq-azul {
     top: 25px;
@@ -85,6 +91,11 @@ tr {
     transform: rotate(-60deg);
 }
 
+/* TODAS LAS CASILLAS EN GENERAL REQUIEREN QUE SE LE ESPECIFIQUE UNAS PROPIEDADES
+   QUE AYUDEN A ESPACEARLAS Y ADEMAS QUE DENTRO DE ELLAS PUEDA EXISTIR UN ELEMENTO
+   EN EL CENTRO
+*/
+
 .casilla {
     width: 43.95px;
     height: 14.79px;
@@ -95,6 +106,8 @@ tr {
     background-color: var(--gris);
     cursor: pointer;
 }
+
+/* EN ESTA PARTE SE ESPECIFICA EL COLOR DE CADA CASILLA */
 
 .casilla-roja {
     background-color: var(--rojo);
@@ -120,6 +133,8 @@ tr {
     background-color: var(--verde);
 }
 
+/* ESTA ES LA FIGURA CENTRAL DEL TABLERO, LA META */
+
 .meta {
     position: absolute;
     clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
@@ -141,6 +156,10 @@ tr {
 
 }
 
+/* ACA SE DEFINEN LAS PROPIEDADES QUE TENDRÁN LOS TRIANGULOS QUE SERÁN LAS CARCELES
+   O LUGAR DE DONDE SALEN NUESTRAS FICHAS
+*/
+
 .salida {
     position: absolute;
     width: 0;
@@ -148,6 +167,10 @@ tr {
     border-left: 66px solid transparent;
     border-right: 66px solid transparent;
 }
+
+/* AL IGUAL QUE LAS TABLAS DIVIDAS POR EQUIPOS CADA CARCEL-SALIDA REQUIERE POSICIONES, COLORES
+   Y DEMAS PROPIEDADES QUE LA DEJEN POSICIONARSE DONDE SE REQUIERE
+*/
 
 .salida-roja {
     border-bottom: 115px solid var(--rojo);
@@ -191,6 +214,11 @@ tr {
     transform: rotate(-90deg);
 }
 
+/*  ESTA PARTE SON LOS PUNTOS GRISES QUE APARECEN EN CADA CARCEL-SALIDA
+    CON EL FIN DE QUE SEA SU POSICION INICIAL O CUANDO UNA FICHA SEA ENVIADA
+    DE VUELTA AHÍ SE POSICIONE EN CENTRO DE ALGUNO DE LOS PUNTOS
+*/
+
 .punto-inicial {
     width: 18px;
     height: 18px;
@@ -203,6 +231,8 @@ tr {
     align-items: center;
     box-shadow: inset 0px 0px 2px rgba(0, 0, 0, 0.7);
 }
+
+/* CADA PUNTO INICIAL NECESITA UNA POSICION ESPECIAL EN LAS CARCELES */
 
 .pi1 {
     top: 21px;
@@ -223,65 +253,39 @@ tr {
     top: 9px;
     left: -10px;
 }
-/* 
-#ficha-roja {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: var(--rojo);
-    box-shadow: 6px 5px 15px -1px rgba(74,74,74,0.9);
-    position: relative;
-} 
-*/
 
-#ficha-roja {
+/* TODAS LAS FICHAS TENDRÁN ESTAS PROPIEDADES */
+
+.ficha {
     width: 12px;
     height: 12px;
-    background-image: url('../scr/ficha-roja.svg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
 
-/* 
-#ficha-roja::after,
-#ficha-roja::before {
-    content: '';
-    position: absolute;
-    border-radius: 50%;
-} 
-*/
+/* Y CADA FICHA TENDRÁ UNA COLOR DIFERENTE */
 
-/* 
-#ficha-roja::before {
-    width: 7px;
-    height: 7px;
-    top: 2.5px;
-    left: 2.5px;
-    background-color: #b64734;
-    box-shadow: 2px 1px 19px 4px rgba(0,0,0,0.51);;
-} 
-*/
-    
-/* #ficha-roja::after {
-    width: 3px;
-    height: 3px;
-    top: 4.5px;
-    left: 4.5px;
-    background-color: #ddc8c4;
+#ficha-roja {
+    background-image: url('../scr/fichas/ficha-roja.svg');
 }
-*/
 
 #ficha-azul {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: blue;
+    background-image: url('../scr/fichas/ficha-azul.svg');
 }
 
 #ficha-verde {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: green;
+    background-image: url('../scr/fichas/ficha-verde.svg');
+}
+
+#ficha-purpura {
+    background-image: url('../scr/fichas/ficha-purpura.svg');
+}
+
+#ficha-naranja {
+    background-image: url('../scr/fichas/ficha-naranja.svg');
+}
+
+#ficha-rosa {
+    background-image: url('../scr/fichas/ficha-rosa.svg');
 }
