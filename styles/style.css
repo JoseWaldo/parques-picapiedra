@@ -279,7 +279,7 @@ tr {
 
 .config-parques {
     border: 1px solid black;
-    width: calc(100% - 600px);
+    width: 40%;
     height: 100vh;
 }
 
@@ -287,7 +287,6 @@ tr {
     width: 60%;
     text-align: center;
     padding: 10px;
-    border-bottom: 3px solid black;
     margin: 0 auto;
 }
 
@@ -309,11 +308,11 @@ tr {
 
 /* Y CADA FICHA TENDRÁ UNA COLOR DIFERENTE */
 
-#ficha-roja {
+.ficha-roja {
     background-image: url('../scr/fichas/ficha-roja.svg');
 }
 
-#ficha-azul {
+.ficha-azul {
     background-image: url('../scr/fichas/ficha-azul.svg');
 }
 
@@ -331,4 +330,43 @@ tr {
 
 #ficha-rosa {
     background-image: url('../scr/fichas/ficha-rosa.svg');
+}
+
+/* FORMULARIO PARA LOS DATOS SOBRE N° JUGADORES Y DE FICHAS */
+
+.config-parques__datos-usuario {
+    box-shadow: 4px 3px 13px -2px rgba(0,0,0,0.78);
+    border-radius: 10px;
+    width: 70%;
+    padding: 20px;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.numero-jugadores {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.boton {
+    display: block;
+    width: 120px;
+    padding: 10px;
+    margin: 0 auto;
+    margin-top: 10px;
+    border: 3px solid transparent;
+    outline: none;
+    background-color: var(--purpura);
+    border-radius: 20px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+.boton:hover {
+    background-color: transparent;
+    border: 3px solid var(--purpura);
+    color: #161616;
+    transition: 0.1s;
+
 }
