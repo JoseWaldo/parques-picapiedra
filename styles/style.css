@@ -245,7 +245,7 @@ tr {
     border-radius: 50%;
     background-color: #737474;
     position: relative;
-    opacity: 0.7;
+    opacity: 0.7;   
     display: flex;
     justify-content: center;
     align-items: center;
@@ -316,19 +316,19 @@ tr {
     background-image: url('../scr/fichas/ficha-azul.svg');
 }
 
-#ficha-verde {
+.ficha-verde {
     background-image: url('../scr/fichas/ficha-verde.svg');
 }
 
-#ficha-purpura {
+.ficha-purpura {
     background-image: url('../scr/fichas/ficha-purpura.svg');
 }
 
-#ficha-naranja {
+.ficha-naranja {
     background-image: url('../scr/fichas/ficha-naranja.svg');
 }
 
-#ficha-rosa {
+.ficha-rosa {
     background-image: url('../scr/fichas/ficha-rosa.svg');
 }
 

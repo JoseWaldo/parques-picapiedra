@@ -1,29 +1,27 @@
 class PuntoInicial {
 
-    #ficha = null
-    #domElemento = null
+    #ficha = null           // Tipo Ficha
+    #domElemento = null     // Objeto HTML
 
     constructor(domElemento, ficha) {
         this.#domElemento = domElemento
         this.#ficha = ficha
     }
 
-    get getDomElemento() {
+    get obtenerDomElemento() {
         return this.#domElemento
     }
 
-    get getFicha() {
+    get obtenerFicha() {
         return this.#ficha
     }
 
     insertarElemento() {
-        console.log('Dentro de insertar elemento')
         let elementoPunto
         let elementoFicha
         elementoPunto = this.#domElemento
-        elementoFicha = this.#ficha
-        console.log(elementoPunto)
-        console.log(elementoFicha)
+        elementoFicha = this.#ficha.obtenerDomElemento
         elementoPunto.insertAdjacentElement('afterbegin', elementoFicha)
+        this.#ficha.asignarPosicion()
     }
 }
