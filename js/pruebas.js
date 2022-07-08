@@ -1,6 +1,3 @@
-
-
-
 const parques = document.querySelector('.juego__parques')
 const fichaRoja = document.createElement('div')
 const fichaAzul = document.createElement('div')

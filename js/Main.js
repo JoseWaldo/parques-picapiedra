@@ -1,8 +1,8 @@
 /* IDENTIFICAMOS LAS CONDICIONES CON LAS QUE EL USUARIO QUIERE JUGAR */
 
-const numFichas = 4     
+const numFichas = 2     
 // const numJugadores = 2
-const colorFichasJugadoras = ['carcelRoja', 'carcelRosa', 'carcelNaranja']
+const colorFichasJugadoras = ['carcelRoja', 'carcelRosa', 'carcelNaranja', 'carcelVerde']
 
 let carceles = {
     carcelRoja: null,
@@ -80,7 +80,7 @@ function crearFicha(nombreId) {
     const clase = nombreId.substring(0, nombreId.length - 2)
     const elemento = document.createElement('div')
     elemento.id = nombreId
-    elemento.className = 'ficha ' + clase
+    elemento.className = 'ficha ' + clase  
     const ficha = new Ficha(elemento)
     return ficha
 }

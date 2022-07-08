@@ -13,3 +13,14 @@ ETAPAS:
     4.6) Se crea por último una cola con el orden en que se lanzaran de derecha a izq.
         4.6.1) (0, rojo), [10 != 0](1, naranja), [8 != 0](2, azul), [7 != 0](3, rosa)
 5) empieza el juego.    
+
+
+
+funcion
+-> diccionario: puntosIniciales -> (agregarFicha)
+-> diccionario: fichas -> (modificarLaPosicionActual)
+-> diccionario: casillas -> (cambiarPosicionFicha)
+
+--> cambio de posicion
+----> des-dibujar la ficha en html
+----> volver a dibujar en nueva posicion 
