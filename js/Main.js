@@ -114,4 +114,9 @@ NOTAS:
     >> elementoHijo.parentNode.id   
 > Se puede eliminar un elemento hijo de un padre de la sgte manera (es un borrado lógico):
     >> elementoPadre.removeChild(elementoHijo)
+> Se puede crear atributos personalizado de la sgte manera: colocando data-tipo, para acceder
+  desde Js lo podemos lograr con dataset. document.dataset.tipo
+
+  y con document.querySelectorAll('td[data-tipo]') -> podemos acceder a todas las casillas
+   que tengan ese atributo
 */
