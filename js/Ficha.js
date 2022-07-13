@@ -1,22 +1,44 @@
 class Ficha {
     
-    #domElemento = null     // Tipo Objeto HTML
-    #posicion = ''          // Tipo String
+    #id = ''                       // Tipo String
+    #domElemento = null            // Tipo Objeto HTML
+    #posicionInicial = ''          // Tipo String
+    #posicionActual = ''           // Tipo String
 
-    constructor(objetoHTML) {
+    constructor(identificador, objetoHTML) {
         this.#domElemento = objetoHTML
+        this.#id = identificador
     }
 
     get obtenerDomElemento() {
         return this.#domElemento
     }
 
-    get obtenerPosicion() {
-        return this.#posicion
+    get obtenerPosicionInicial() {
+        return this.#posicionInicial
     }
 
-    asignarPosicion() {
-        this.#posicion = this.#domElemento.parentNode.id
+    get obtenerPosicionActual() {
+        return this.#posicionActual
+    }
+
+    get obtenerId() {
+        return this.#id
+    }
+
+    asignarPosicionActual() {
+        try {
+            this.#posicionActual = this.#domElemento.parentNode.id
+        } catch (error) {
+            this.#posicionActual = ''
+        }
     } 
 
+    // cambiarPosicionActual(posicionAct) {
+    //     this.#posicionActual = posicionAct
+    // }
+
+    asignarPosicionInicial(posicionIncial) {
+        this.#posicionInicial = posicionIncial
+    }
 }
