@@ -165,12 +165,14 @@ function seleccionarElPrimeroEnLanzar() {
             infoEstado.textContent = 'Empieza el juego'
             mensajeTurnos.style.display = 'none'
             ventanaLanzarDados.style.display = 'none'
+            
             const puntajeMayor = numeroMayor(puntajeDados)
             const indicePuntajeMayor = puntajeDados.indexOf(puntajeMayor)
             let numeroDeOportunidades = 0
 
-            ventanaLanzarDados.style.display = 'block'
             
+
+            botonLanzarDados.addEventListener('click', )
 
         }
     }
