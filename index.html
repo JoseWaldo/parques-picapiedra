@@ -337,19 +337,62 @@
             <header class="cabecera">
                 <h1 class="cabecera__titulo">Parqués Picapiedra</h1>
             </header>
-            <article class="config-parques__datos-usuario">
-                <label for="numJugadores" class="numero-jugadores">
-                    Número de jugadores: 
-                    <input type="number" id="numJugadores">
-                </label>
-                </br>
-                <label for="numFichas" class="numero-jugadores">
-                    Número de fichas:
-                    <input type="number" id="numFichas">
+
+            <h2 id="infoEstado">Selección de jugadores</h2>
+
+            <form action="" id="formularioConfigInicial" name="formularioConfigInicial" class="config-parques__datos-usuario" method="get">
+                <h3>Configuración para posicionar fichas</h1>
+                
+                <label class="form__escojerJugadores">Seleccione el color de los jugadores (elija 2, 4 o 6 colores):</label>
+                <label for="roja" class="checkbox">
+                    <input type="checkbox" id="roja" name="colores" value="roja">
+                    Rojo
                 </label>
                 <br>
-                <button type="submit" id="botonNumJyF" class="boton">Comenzar</button>
+                <label for="naranja" class="checkbox">
+                    <input type="checkbox" id="naranja" name="colores" value="naranja">
+                    Naranja
+                </label>
+                <br>
+                <label for="purpura" class="checkbox">
+                    <input type="checkbox" id="purpura" name="colores" value="purpura">
+                    Purpura
+                </label>
+                <br>
+                <label for="azul" class="checkbox">
+                    <input type="checkbox" id="azul" name="colores" value="azul">
+                    Azul
+                </label>
+                <br>
+                <label for="rosa" class="checkbox">
+                    <input type="checkbox" id="rosa" name="colores" value="rosa">
+                    Rosa
+                </label>
+                <br>
+                <label for="verde" class="checkbox">
+                    <input type="checkbox" id="verde" name="colores" value="verde">
+                    Verde
+                </label>
+                <br>
+                <p class="mensajeDeError" id="mensajeDeErrorJugadores"></p>
+                <label for="numFichas" class="form__numFichas">
+                    Con cuantas fichas desea jugar:
+                    <input type="number" id="numFichas" name="numFichas">
+                </label>
+                <br>
+                <p class="mensajeDeError" id="mensajeDeErrorFichas"></p>
+                <button type="submit" id="posicionarFichas" class="boton boton--posicionarFichas">Posicionar Fichas</button>
+            </form>
+
+            <article class="lanzar-dados config-parques__datos-usuario" id="ventanaLanzarDados">
+                <div class="lanzar-dados__contenedor-dados">
+                    <div class="dado" id="dado-1"></div>
+                    <div class="dado" id="dado-2"></div>
+                </div>
+                <p id="mensajeTurnos">Es el turno de las fichas: </p>
+                <button class="boton" id="lanzarDados">Lanzar Dados</button>
             </article>
+
         </section>
     </main>
     

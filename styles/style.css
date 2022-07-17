@@ -299,6 +299,16 @@ tr {
 }
 
 
+/* INFORMACIÓN DEL ESTADO DEL JUEGO */
+
+#infoEstado {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14px;
+    font-style: italic;
+    color: gray;
+}
+
 /* TODAS LAS FICHAS TENDRÁN ESTAS PROPIEDADES */
 
 .ficha {
@@ -344,6 +354,40 @@ tr {
     padding: 20px;
     margin: 0 auto;
     margin-top: 30px;
+    font-size: 14px;
+}
+
+.config-parques__datos-usuario h3 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.form__escojerJugadores {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.checkbox {
+    font-weight: 300;
+    font-size: 13px;
+}
+
+.form__numFichas {
+    display: block;
+    margin-top: 6px;
+}
+
+#numFichas {
+    display: block;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid black;
+    margin-top: 4px;
+    padding: 6px;
+    outline: none;
+    width: 50px;
+    text-align: center;
 }
 
 .numero-jugadores {
@@ -354,7 +398,7 @@ tr {
 .boton {
     display: block;
     width: 120px;
-    padding: 10px;
+    padding: 8px;
     margin: 0 auto;
     margin-top: 10px;
     border: 3px solid transparent;
@@ -366,10 +410,44 @@ tr {
     cursor: pointer;
 }
 
+.boton--posicionarFichas {
+    width: 100%;
+    font-size: 14px;
+}
+
 .boton:hover {
-    background-color: transparent;
-    border: 3px solid var(--purpura);
-    color: #161616;
+    box-shadow: 0px 0px 8px -1px rgba(89,43,112,1);
     transition: 0.1s;
 
+}
+
+/* DADOS */
+
+.lanzar-dados {
+    display: none;
+}
+
+.lanzar-dados__contenedor-dados {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.dado {
+    width: 60px;
+    height: 60px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+#mensajeTurnos {
+    display: none;
+}
+
+.mensajeDeError {
+    color: red;
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 12px;
 }
