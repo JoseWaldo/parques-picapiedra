@@ -15,7 +15,7 @@ function crearFichas(listaDeColores, cantidadFichas) {
             ficha = document.createElement('div')
             ficha.id = idFicha
             ficha.className = claseFicha
-            fichas[idFicha] = new Ficha(idFicha, ficha)        
+            fichas[idFicha] = new Ficha(idFicha, ficha, color)        
         }
     }
     return fichas
@@ -42,11 +42,13 @@ function crearCasillas(listaDeCasillas) {
     let indexCasilla
     let tipoDeCasilla
     let idCasilla
+    let colorCasilla
     for(let i = 0; i < listaDeCasillas.length; i++) {
         indexCasilla = listaDeCasillas[i]
         tipoDeCasilla = indexCasilla.dataset.tipo
+        colorCasilla = indexCasilla.dataset.color
         idCasilla = indexCasilla.id
-        casillas[indexCasilla.id] = new Casilla(idCasilla, indexCasilla, tipoDeCasilla)
+        casillas[indexCasilla.id] = new Casilla(idCasilla, indexCasilla, tipoDeCasilla, colorCasilla)
     }
 
     return casillas

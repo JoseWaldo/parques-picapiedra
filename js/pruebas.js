@@ -56,7 +56,7 @@ formularioConfigPosIniciales.addEventListener('submit', (e) => {
         
         formularioConfigPosIniciales.style.display = 'none'
         
-        iniciarJuego()
+        seleccionarElPrimeroEnLanzar()
         
     }
 })
@@ -66,6 +66,28 @@ formularioConfigPosIniciales.addEventListener('submit', (e) => {
 
 function buscarCasilla(id) {
     return casillas[id]
+
+}
+
+function buscarCasillaPorColor(color) {
+    for(const idCasilla in casillas) {
+        let casilla = casillas[idCasilla]
+        if(casilla.obtenerColor === color){
+            return casilla
+        }
+    }
+
+}
+
+function buscarFichaPorColor(color) {
+    let fichasEncontradas = []
+    for(const idFicha in fichas) {
+        let ficha = fichas[idFicha]
+        if(ficha.obtenerColor === color){
+            fichasEncontradas.push(ficha)
+        }
+    }
+    return fichasEncontradas
 }
 
 function buscarFicha(id) {
@@ -133,10 +155,6 @@ function validarColoresElegidos(e) {
     }
 }
 
-function iniciarJuego() {
-    seleccionarElPrimeroEnLanzar()
-}
-
 function seleccionarElPrimeroEnLanzar() {
     infoEstado.textContent = '¿Quién será el primero en lanzar?'
     ventanaLanzarDados.style.display = 'block'
@@ -148,7 +166,7 @@ function seleccionarElPrimeroEnLanzar() {
     
     mensajeTurnos.style.display = 'block'
     const mensajeOriginal = mensajeTurnos.textContent  
-    mensajeTurnos.textContent = mensajeOriginal + colores[index] + 's'   
+    mensajeTurnos.textContent = mensajeOriginal + colores[index]   
 
     function lanzamiento() {
         color = colores[index]
@@ -157,23 +175,11 @@ function seleccionarElPrimeroEnLanzar() {
             puntajeDados.push(dado1 + dado2) 
             index++
             if(colores[index] != undefined) {
-                mensajeTurnos.textContent = mensajeOriginal + colores[index] + 's'   
+                mensajeTurnos.textContent = mensajeOriginal + colores[index]   
             }
         }
         if(index == colores.length) {
-            
-            infoEstado.textContent = 'Empieza el juego'
-            mensajeTurnos.style.display = 'none'
-            ventanaLanzarDados.style.display = 'none'
-            
-            const puntajeMayor = numeroMayor(puntajeDados)
-            const indicePuntajeMayor = puntajeDados.indexOf(puntajeMayor)
-            let numeroDeOportunidades = 0
-
-            
-
-            botonLanzarDados.addEventListener('click', )
-
+            iniciarJuego()
         }
     }
 }
@@ -186,6 +192,55 @@ function numeroMayor(array) {
         }
     }
     return numeroMayor
+}
+
+function iniciarJuego() {
+    infoEstado.textContent = 'Empieza el juego'
+    // ventanaLanzarDados.style.display = 'none'
+    
+    const puntajeMayor = numeroMayor(puntajeDados)
+    const indicePuntajeMayor = puntajeDados.indexOf(puntajeMayor)
+    const mensajeOriginal = 'Es el turno de la ficha: '  
+    
+    let numeroDeOportunidades = 0
+    
+    let turno 
+    turno = indicePuntajeMayor 
+    turno %= colores.length
+    let color = colores[turno]
+    mensajeTurnos.textContent = mensajeOriginal + color
+    
+    botonLanzarDados.addEventListener('click', (e) => {
+
+        lanzarDados()
+        console.log('Dado1: ' + dado1 + ' Dado2: ' + dado2)
+        
+        if(dado1 === dado2) {
+            console.log('saco dados pares')
+            console.log(color)
+            let casilla = buscarCasillaPorColor(color)
+            let fichasAPosicionar = buscarFichaPorColor(color) 
+            console.log({
+                casilla,
+                fichasAPosicionar,
+            })
+            for(let i = 0; i < fichasAPosicionar.length; i++){
+                moverFicha(casilla, fichasAPosicionar[i])
+            }
+            turno++
+            color = colores[turno]
+            mensajeTurnos.textContent = mensajeOriginal + color
+        }
+
+        else {
+            numeroDeOportunidades += 1
+            if(numeroDeOportunidades === 3) {
+                turno++
+                color
+                mensajeTurnos.textContent = mensajeOriginal + color
+            }
+        }    
+    })
 }
 
 

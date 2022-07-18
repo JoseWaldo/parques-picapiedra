@@ -4,11 +4,13 @@ class Casilla {
     #domElemento = null         // Tipo HTML Object
     #fichas = {}               // Tipo Diccionario Fichas
     #tipo = ''                  // Tipo String
+    #color = ''                 // Tipo String
 
-    constructor(identificador, objetoHTML, tipo) {
+    constructor(identificador, objetoHTML, tipo, color) {
         this.#id = identificador
         this.#domElemento = objetoHTML
         this.#tipo = tipo
+        this.#color = color
     }
 
     get obtenerId() {
@@ -25,6 +27,10 @@ class Casilla {
 
     get obtenerTipo() {
         return this.#tipo
+    }
+
+    get obtenerColor() {
+        return this.#color
     }
 
     insertarFicha(ficha) {

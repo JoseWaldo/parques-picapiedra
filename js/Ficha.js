@@ -3,11 +3,13 @@ class Ficha {
     #id = ''                       // Tipo String
     #domElemento = null            // Tipo Objeto HTML
     #posicionInicial = ''          // Tipo String
-    #posicionActual = ''           // Tipo String
+    #posicionActual = ''
+    #color = ''           // Tipo String
 
-    constructor(identificador, objetoHTML) {
+    constructor(identificador, objetoHTML, color) {
         this.#domElemento = objetoHTML
         this.#id = identificador
+        this.#color = color
     }
 
     get obtenerDomElemento() {
@@ -24,6 +26,10 @@ class Ficha {
 
     get obtenerId() {
         return this.#id
+    }
+
+    get obtenerColor() {
+        return this.#color
     }
 
     asignarPosicionActual() {
