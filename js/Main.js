@@ -1,122 +1,258 @@
-/* IDENTIFICAMOS LAS CONDICIONES CON LAS QUE EL USUARIO QUIERE JUGAR */
-
-const numFichas = 2     
-// const numJugadores = 2
-const colorFichasJugadoras = ['carcelRoja', 'carcelRosa', 'carcelNaranja', 'carcelVerde']
-
-let carceles = {
-    carcelRoja: null,
-    carcelNaranja: null,
-    carcelPurpura: null,
-    carcelAzul: null,
-    carcelRosa: null,
-    carcelVerde: null,
+const dadosUrl = {
+    1: "url('../scr/dados/dado-1.svg')",
+    2: "url('../scr/dados/dado-2.svg')",
+    3: "url('../scr/dados/dado-3.svg')",
+    4: "url('../scr/dados/dado-4.svg')",
+    5: "url('../scr/dados/dado-5.svg')",
+    6: "url('../scr/dados/dado-6.svg')",
 }
 
-let matriz = {
-    fichasRojas: [],
-    fichasNaranjas: [],
-    fichasPurpura: [],
-    fichasAzules: [],
-    fichasRosas: [],
-    fichasVerdes: [],
-}
+const lanzarDadosCaja = document.querySelector('.lanzar-dados')
+const dado1Objeto = document.querySelector('#dado-1')
+const dado2Objeto = document.querySelector('#dado-2')
+const botonLanzarDados = document.querySelector('#lanzarDados')
+const ventanaLanzarDados = document.querySelector('#ventanaLanzarDados')
+const mensajeTurnos = document.querySelector('#mensajeTurnos')
 
-for (const indice of Object.keys(colorFichasJugadoras)) {
+const listaDeCasillas = document.querySelectorAll('td[data-tipo]')
+
+const mensajeDeErrorFichas = document.querySelector('#mensajeDeErrorFichas')
+const mensajeDeErrorJugadores = document.querySelector('#mensajeDeErrorJugadores')
+
+const formularioConfigPosIniciales = document.querySelector('#formularioConfigInicial')
+const elementosFormConfigPosIni = formularioConfigPosIniciales.elements 
+const botonPosicionarFichas = document.querySelector('#posicionarFichas')
+
+const parques = document.querySelector('.juego__parques')
+
+const infoEstado = document.querySelector('#infoEstado')
+
+//let colores = ['roja', 'naranja', 'purpura']
+//let numeroDeFichas = 2
+
+let colores = []
+let numeroDeFichas
+
+let dado1 
+let dado2
+
+let fichas
+let posicionesIniciales
+let casillas 
+
+let puntajeDados = []
+
+casillas = crearCasillas(document.querySelectorAll('td[data-tipo]'))
+/* ----------------------------------------------------------------------------------------  */
+
+formularioConfigPosIniciales.addEventListener('submit', (e) => {
+    validar(e)
     
-    let color = colorFichasJugadoras[indice]
-    const cantidadFichas = numFichas
-    
-    switch (color) {
-        case 'carcelRoja':
-            carceles['carcelRoja'] = crearCarcel('ficha-roja', 'pi-rojo', color, cantidadFichas)
-            break
+    if(colores != undefined && numeroDeFichas != undefined) {
         
-        case 'carcelNaranja': 
-            carceles['carcelNaranja'] = crearCarcel('ficha-naranja', 'pi-naranja', color, cantidadFichas)
-            break
+        fichas = crearFichas(colores, numeroDeFichas)
+        posicionesIniciales = crearPosicionesIniciales(colores, numeroDeFichas)
+        posicionarFichasInicialmente(fichas, posicionesIniciales)
+        
+        formularioConfigPosIniciales.style.display = 'none'
+        
+        seleccionarElPrimeroEnLanzar()
+        
+    }
+})
 
-        case 'carcelPurpura':
-            carceles['carcelPurpura'] = crearCarcel('ficha-purpura', 'pi-purpura', color, cantidadFichas)
-            break
-            
-        case 'carcelAzul':
-            carceles['carcelAzul'] = crearCarcel('ficha-azul', 'pi-azul', color, cantidadFichas)
-            break
 
-        case 'carcelRosa':
-            carceles['carcelRosa'] = crearCarcel('ficha-rosa', 'pi-rosa', color, cantidadFichas)
-            break
+/* ------------------FUNCIONES-------------------- */
 
-        case 'carcelVerde':
-            carceles['carcelVerde'] = crearCarcel('ficha-verde', 'pi-verde', color, cantidadFichas)
-            break
+function buscarCasilla(id) {
+    return casillas[id]
 
+}
+
+function buscarCasillaPorColor(color) {
+    for(const idCasilla in casillas) {
+        let casilla = casillas[idCasilla]
+        if(casilla.obtenerColor === color){
+            return casilla
+        }
     }
 
-    carceles[color].posicionarElementos()
 }
 
-
-/* ---------------------- FUNCIONES PARA CREACION Y EXTRACCIÓN DE ELEMENTOS ---------------------- */
-
-// Dandole el id de un elemento html este nos devuelve el objeto HTML
-function traerElemento(identificador) {
-    const elemento = document.getElementById(identificador)
-    return elemento
+function buscarFichaPorColor(color) {
+    let fichasEncontradas = []
+    for(const idFicha in fichas) {
+        let ficha = fichas[idFicha]
+        if(ficha.obtenerColor === color){
+            fichasEncontradas.push(ficha)
+        }
+    }
+    return fichasEncontradas
 }
 
-// Función para crear posiciones iniciales
-function crearPosicionInicial(nombreId, ficha) {
-    const elemento = traerElemento(nombreId)
-    const posicionInicial = new PuntoInicial(elemento, ficha)
-    return posicionInicial
+function buscarFicha(id) {
+    return fichas[id]
 }
 
-// Función para crear las fichas usando el id
-// ficha-roja-1 --> id
-// ficha-roja --> clase
-function crearFicha(nombreId) {
-    const clase = nombreId.substring(0, nombreId.length - 2)
-    const elemento = document.createElement('div')
-    elemento.id = nombreId
-    elemento.className = 'ficha ' + clase  
-    const ficha = new Ficha(elemento)
-    return ficha
+function lanzarDados() {
+    dado1 = numeroRandom()
+    dado2 = numeroRandom()
+    // lanzarDadosCaja.style.display = 'block'
+    dado1Objeto.style.backgroundImage = dadosUrl[dado1]
+    dado2Objeto.style.backgroundImage = dadosUrl[dado2]
 }
 
-// Funcion para la creación de las carceles
-function crearCarcel(nombreFicha, nombrePosInicial, nombreCarcel, nFichas) {
-    let idFicha = nombreFicha
-    let idPosInicial = nombrePosInicial
-    let ficha = null
-    let posIni = null
-    let listaPosIniciales = []
+function numeroRandom() {
+    const numMin = 1
+    const numMax = 6
+    
+    let resultado = Math.floor(Math.random()*(numMax-numMin+1)+numMin)
+    
+    return resultado
+}
 
-    for (let i = 1; i <= nFichas; i++) {
-        ficha = crearFicha(idFicha + '-' + i)
-        posIni = crearPosicionInicial(idPosInicial + '-' + i, ficha)
-        listaPosIniciales.push(posIni)
+function validar(e) {
+    numeroDeFichas = validarNumPosIniciales(e)
+    colores = validarColoresElegidos(e)
+    e.preventDefault()
+}
+
+function validarNumPosIniciales(e) {
+    let formulario = formularioConfigPosIniciales
+
+    if(formulario.numFichas.value.length == 0) {
+        mensajeDeErrorFichas.textContent = 'Por favor complete este campo'
+        e.preventDefault()
+    }
+    else if(!(parseInt(formulario.numFichas.value) >= 2 && parseInt(formulario.numFichas.value) <= 4)) {
+        mensajeDeErrorFichas.textContent = 'Valores no validos'
+        //alert('Valor no permitido')
+        e.preventDefault()
+    }
+    else {
+        mensajeDeErrorFichas.textContent = ''
+        return parseInt(formulario.numFichas.value)
     }
 
-    let carcel = null
-    carcel = new Carcel(nombreCarcel, listaPosIniciales)
-
-    return carcel
 }
 
-/* ---------------------------------------------------------------------------- */
+function validarColoresElegidos(e) {
+    let formulario = formularioConfigPosIniciales
+    let coloresElegidos = []
+    
+    for (let i = 0; i < formulario.colores.length; i++) {
+        if(formulario.colores[i].checked){
+            coloresElegidos.push(formulario.colores[i].id)
+        }
+    }
 
-/*
-NOTAS:
-> Se puede obtener el id del elemento padre de la siguiente manera:
-    >> elementoHijo(htmlObject)
-    >> elementoHijo.parentNode.id   
-> Se puede eliminar un elemento hijo de un padre de la sgte manera (es un borrado lógico):
-    >> elementoPadre.removeChild(elementoHijo)
-> Se puede crear atributos personalizado de la sgte manera: colocando data-tipo, para acceder
-  desde Js lo podemos lograr con dataset. document.dataset.tipo
+    if(coloresElegidos.length < 2) {
+        mensajeDeErrorJugadores.textContent = 'Por favor elija más de 1 color'
+        e.preventDefault()
+    } else {
+        mensajeDeErrorJugadores.textContent = ''
+        return coloresElegidos
+    }
+}
 
-  y con document.querySelectorAll('td[data-tipo]') -> podemos acceder a todas las casillas
-   que tengan ese atributo
+function seleccionarElPrimeroEnLanzar() {
+    infoEstado.textContent = '¿Quién será el primero en lanzar?'
+    ventanaLanzarDados.style.display = 'block'
+    
+    let index = 0
+    let color
+    
+    botonLanzarDados.addEventListener('click', lanzamiento)
+    
+    mensajeTurnos.style.display = 'block'
+    const mensajeOriginal = mensajeTurnos.textContent  
+    mensajeTurnos.textContent = mensajeOriginal + colores[index]   
+
+    function lanzamiento() {
+        color = colores[index]
+        if(color != undefined) {
+            lanzarDados()
+            puntajeDados.push(dado1 + dado2) 
+            index++
+            if(colores[index] != undefined) {
+                mensajeTurnos.textContent = mensajeOriginal + colores[index]   
+            }
+        }
+        if(index == colores.length) {
+            iniciarJuego()
+        }
+    }
+}
+
+function numeroMayor(array) {
+    let numeroMayor = array[0]
+    for(let i = 0; i < array.length; i++) {
+        if(numeroMayor < array[i]) {
+            numeroMayor = array[i]
+        }
+    }
+    return numeroMayor
+}
+
+function iniciarJuego() {
+    infoEstado.textContent = 'Empieza el juego'
+    // ventanaLanzarDados.style.display = 'none'
+    
+    const puntajeMayor = numeroMayor(puntajeDados)
+    const indicePuntajeMayor = puntajeDados.indexOf(puntajeMayor)
+    const mensajeOriginal = 'Es el turno de la ficha: '  
+    
+    let numeroDeOportunidades = 0
+    
+    let turno 
+    turno = indicePuntajeMayor 
+    turno %= colores.length
+    let color = colores[turno]
+    mensajeTurnos.textContent = mensajeOriginal + color
+    
+    botonLanzarDados.addEventListener('click', (e) => {
+
+        lanzarDados()
+        console.log('Dado1: ' + dado1 + ' Dado2: ' + dado2)
+        
+        if(dado1 === dado2) {
+            console.log('saco dados pares')
+            console.log(color)
+            let casilla = buscarCasillaPorColor(color)
+            let fichasAPosicionar = buscarFichaPorColor(color) 
+            console.log({
+                casilla,
+                fichasAPosicionar,
+            })
+            for(let i = 0; i < fichasAPosicionar.length; i++){
+                moverFicha(casilla, fichasAPosicionar[i])
+            }
+            turno++
+            color = colores[turno]
+            mensajeTurnos.textContent = mensajeOriginal + color
+        }
+
+        else {
+            numeroDeOportunidades += 1
+            if(numeroDeOportunidades === 3) {
+                turno++
+                color
+                mensajeTurnos.textContent = mensajeOriginal + color
+            }
+        }    
+    })
+}
+
+
+/* MOVER FICHA CON UNA FICHA */
+
+/* 
+
+        color = colores[index] 
+        mensajeTurnos.style.display = 'block'
+        mensajeTurnos.textContent += color   
+        lanzarDados()
+        console.log('El color: ' + color + ', saco los dados: ', dado1, dado2)        
+        index += 1
+
 */

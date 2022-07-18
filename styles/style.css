@@ -280,7 +280,6 @@ tr {
 /* CONFIG DEL JUEGO */
 
 .config-parques {
-    border: 1px solid black;
     width: 40%;
     max-width: 400px;
     height: 100vh;
